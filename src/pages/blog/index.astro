@@ -1,0 +1,33 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { blogPosts } from "../../data/blog";
+---
+
+<PageLayout
+  title="Blog · SmileLux"
+  description="Consejos de salud bucal, estética dental y ortodoncia. Artículos del equipo SmileLux en Bogotá."
+>
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-[#D4AF77] hover:text-[#C9B498] transition-colors text-sm font-medium mb-8"
+    >
+      ← Volver al inicio
+    </a>
+
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <div class="inline-block bg-[#D4AF77]/10 px-4 py-2 rounded-full mb-6">
+        <span class="text-[#D4AF77] tracking-wider text-sm">BLOG</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl text-[#1B2B3A] font-medium mb-4">Consejos para tu Sonrisa</h1>
+      <p class="text-gray-600 text-lg">
+        Artículos sobre estética dental, ortodoncia y cuidados bucales de nuestros especialistas.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogPosts.map((post) => <BlogCard post={post} />)}
+    </div>
+  </div>
+</PageLayout>

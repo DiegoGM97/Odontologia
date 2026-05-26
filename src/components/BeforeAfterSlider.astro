@@ -1,0 +1,116 @@
+---
+interface Props {
+  beforeImage: string;
+  afterImage: string;
+  alt?: string;
+}
+
+const { beforeImage, afterImage, alt = "Comparación antes y después" } = Astro.props;
+const id = `ba-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div
+  class="before-after relative w-full aspect-[4/3] overflow-hidden rounded-lg cursor-ew-resize select-none shadow-lg"
+  data-before-after
+  data-id={id}
+>
+  <img
+    src={afterImage}
+    alt={`${alt} - Después`}
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <div
+    class="before-after-clip absolute inset-0 overflow-hidden"
+    style="clip-path: inset(0 50% 0 0)"
+  >
+    <img
+      src={beforeImage}
+      alt={`${alt} - Antes`}
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+  </div>
+
+  <div
+    class="absolute top-4 left-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-xs tracking-wider"
+  >
+    ANTES
+  </div>
+  <div
+    class="absolute top-4 right-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-xs tracking-wider"
+  >
+    DESPUÉS
+  </div>
+
+  <div
+    class="before-after-handle absolute top-0 bottom-0 w-1 bg-white shadow-lg"
+    style="left: 50%"
+  >
+    <div
+      class="before-after-knob absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center cursor-grab active:cursor-grabbing"
+      role="slider"
+      aria-label="Comparar antes y después"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={50}
+      tabindex="0"
+    >
+      <div class="flex gap-1">
+        <div class="w-0.5 h-6 bg-[#D4AF77]"></div>
+        <div class="w-0.5 h-6 bg-[#D4AF77]"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initBeforeAfter(container: HTMLElement) {
+    const clip = container.querySelector<HTMLElement>(".before-after-clip");
+    const handle = container.querySelector<HTMLElement>(".before-after-handle");
+    const knob = container.querySelector<HTMLElement>(".before-after-knob");
+    if (!clip || !handle || !knob) return;
+
+    let position = 50;
+    let dragging = false;
+
+    const update = (percent: number) => {
+      position = Math.max(0, Math.min(percent, 100));
+      clip.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+      handle.style.left = `${position}%`;
+      knob.setAttribute("aria-valuenow", String(Math.round(position)));
+    };
+
+    const moveFromClientX = (clientX: number) => {
+      const rect = container.getBoundingClientRect();
+      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      update((x / rect.width) * 100);
+    };
+
+    const start = () => {
+      dragging = true;
+    };
+    const stop = () => {
+      dragging = false;
+    };
+
+    knob.addEventListener("mousedown", start);
+    knob.addEventListener("touchstart", start, { passive: true });
+    window.addEventListener("mouseup", stop);
+    window.addEventListener("touchend", stop);
+
+    container.addEventListener("mousemove", (e) => {
+      if (!dragging) return;
+      moveFromClientX(e.clientX);
+    });
+    container.addEventListener("touchmove", (e) => {
+      if (!dragging) return;
+      moveFromClientX(e.touches[0].clientX);
+    });
+
+    knob.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") update(position - 2);
+      if (e.key === "ArrowRight") update(position + 2);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-before-after]").forEach(initBeforeAfter);
+</script>

@@ -1,0 +1,70 @@
+---
+import { faqItems } from "../data/faq";
+---
+
+<div class="space-y-3" data-faq-accordion>
+  {
+    faqItems.map((item, index) => (
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+        <button
+          type="button"
+          class="faq-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer hover:bg-[#F8F8F8] transition-colors"
+          aria-expanded="false"
+          aria-controls={`faq-panel-${index}`}
+          id={`faq-trigger-${index}`}
+        >
+          <span class="text-[#1B2B3A] font-medium">{item.question}</span>
+          <span class="faq-icon text-[#D4AF77] text-xl flex-shrink-0 transition-transform duration-300">
+            +
+          </span>
+        </button>
+        <div
+          id={`faq-panel-${index}`}
+          class="faq-panel hidden px-6 pb-5 text-gray-600 leading-relaxed"
+          role="region"
+          aria-labelledby={`faq-trigger-${index}`}
+        >
+          {item.answer}
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const panel = trigger.nextElementSibling as HTMLElement | null;
+      const icon = trigger.querySelector(".faq-icon");
+      const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+      document.querySelectorAll<HTMLButtonElement>(".faq-trigger").forEach((other) => {
+        if (other !== trigger) {
+          other.setAttribute("aria-expanded", "false");
+          other.nextElementSibling?.classList.add("hidden");
+          const otherIcon = other.querySelector(".faq-icon");
+          if (otherIcon) {
+            otherIcon.textContent = "+";
+            otherIcon.classList.remove("rotate-45");
+          }
+        }
+      });
+
+      if (isOpen) {
+        trigger.setAttribute("aria-expanded", "false");
+        panel?.classList.add("hidden");
+        if (icon) {
+          icon.textContent = "+";
+          icon.classList.remove("rotate-45");
+        }
+      } else {
+        trigger.setAttribute("aria-expanded", "true");
+        panel?.classList.remove("hidden");
+        if (icon) {
+          icon.textContent = "−";
+          icon.classList.add("rotate-45");
+        }
+      }
+    });
+  });
+</script>

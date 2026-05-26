@@ -1,0 +1,387 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import SpecialtyCard from "../components/SpecialtyCard.astro";
+import TechnologyFeature from "../components/TechnologyFeature.astro";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import ContactForm from "../components/ContactForm.astro";
+import InstagramSection from "../components/InstagramSection.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import {
+  specialties,
+  technologies,
+  beforeAfterCases,
+  testimonials,
+  WHATSAPP_URL,
+  contact,
+  heroMedia,
+} from "../data/site";
+---
+
+<Layout>
+  <SiteNav />
+
+  <section class="relative min-h-[100dvh] h-screen w-full overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src={heroMedia.image}
+        srcset={heroMedia.imageSrcSet}
+        sizes="100vw"
+        alt={heroMedia.alt}
+        width={1920}
+        height={1080}
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover object-[center_35%] md:object-center"
+      />
+      <video
+        id="hero-video"
+        class="absolute inset-0 w-full h-full object-cover hidden md:block"
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster={heroMedia.image}
+        aria-hidden="true"
+      ></video>
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[#1B2B3A]/75 via-[#1B2B3A]/55 to-[#1B2B3A]/70 md:bg-gradient-to-r md:from-[#1B2B3A]/82 md:via-[#1B2B3A]/50 md:to-[#1B2B3A]/35"
+      ></div>
+    </div>
+
+    <div class="relative h-full flex items-center">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 w-full">
+        <div class="max-w-2xl">
+          <div class="inline-block bg-[#D4AF77]/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+            <span class="text-[#D4AF77] tracking-wider text-sm">✨ CLÍNICA DENTAL</span>
+          </div>
+          <h1 class="text-white text-5xl md:text-7xl mb-6 leading-tight font-medium">
+            Tu Sonrisa Perfecta<br />
+            <span class="text-[#D4AF77]">Sin Dolor</span>
+          </h1>
+          <p class="text-white/90 text-lg md:text-xl mb-8 leading-relaxed max-w-xl">
+            Tecnología de vanguardia y especialistas certificados para transformar tu sonrisa con
+            tratamientos indoloros y resultados garantizados.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-gradient-to-r from-[#D4AF77] to-[#C9B498] text-white px-8 py-4 rounded-full hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+            >
+              <Icon name="calendar" size={22} />
+              Agenda tu Valoración
+            </a>
+            <a
+              href="#resultados"
+              class="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full hover:bg-white/20 transition-all duration-300 border-2 border-white/30 text-center"
+            >
+              Ver Casos de Éxito
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div
+        class="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2"
+      >
+        <div class="w-1 h-3 bg-white/50 rounded-full"></div>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ videoSrc: heroMedia.video }}>
+    const video = document.getElementById("hero-video");
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function loadHeroVideo() {
+      if (!video || !desktop.matches || reducedMotion.matches || video.querySelector("source")) return;
+
+      const source = document.createElement("source");
+      source.src = videoSrc;
+      source.type = "video/mp4";
+      video.appendChild(source);
+      video.load();
+      video.play().catch(() => {});
+    }
+
+    loadHeroVideo();
+    desktop.addEventListener("change", (e) => {
+      if (e.matches) loadHeroVideo();
+    });
+  </script>
+
+  <section id="especialidades" class="py-24 px-4 md:px-8 bg-[#F8F8F8]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl text-[#1B2B3A] mb-4 font-medium">
+          Nuestras Especialidades
+        </h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+          Servicios de excelencia respaldados por tecnología de última generación
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {specialties.map((item) => <SpecialtyCard {...item} />)}
+      </div>
+      <div class="text-center mt-14">
+        <p class="text-gray-600 mb-6 max-w-xl mx-auto">
+          Conoce a los especialistas que cuidan cada detalle de tu sonrisa.
+        </p>
+        <a
+          href="/nuestro-equipo"
+          class="inline-flex items-center gap-2 border-2 border-[#D4AF77] text-[#1B2B3A] px-8 py-4 rounded-full hover:bg-[#D4AF77] hover:text-white transition-all duration-300 font-medium"
+        >
+          Ver Nuestro Equipo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="tecnologia" class="py-24 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-block bg-[#D4AF77]/10 px-4 py-2 rounded-full mb-6">
+            <span class="text-[#D4AF77] tracking-wider text-sm">TECNOLOGÍA AVANZADA</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl text-[#1B2B3A] mb-6 font-medium">
+            Innovación que Transforma Experiencias
+          </h2>
+          <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+            Invertimos en la tecnología más avanzada para garantizar tratamientos precisos, rápidos y
+            completamente indoloros.
+          </p>
+          <div class="space-y-4">
+            {technologies.map((item) => <TechnologyFeature {...item} />)}
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              src="https://images.unsplash.com/photo-1642844771937-23accb161a3d?w=1200"
+              alt="Tecnología dental moderna"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-[#D4AF77] to-[#C9B498] rounded-full flex items-center justify-center"
+              >
+                <Icon name="check-circle-2" class="text-white" size={24} />
+              </div>
+              <div>
+                <p class="text-2xl text-[#1B2B3A]">98%</p>
+                <p class="text-sm text-gray-600">Satisfacción</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultados" class="py-24 px-4 md:px-8 bg-[#F8F8F8]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl text-[#1B2B3A] mb-4 font-medium">
+          Transformaciones Reales
+        </h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+          Desliza para ver el antes y después de nuestros pacientes
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {
+          beforeAfterCases.map((item) => (
+            <BeforeAfterSlider
+              beforeImage={item.before}
+              afterImage={item.after}
+              alt={item.alt}
+            />
+          ))
+        }
+      </div>
+      <div class="text-center mt-12">
+        <a
+          href="#resultados"
+          class="inline-block bg-gradient-to-r from-[#D4AF77] to-[#C9B498] text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300"
+        >
+          Ver Más Casos de Éxito
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <InstagramSection />
+
+  <section class="py-24 px-4 md:px-8 bg-[#F8F8F8]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl text-[#1B2B3A] mb-4 font-medium">
+          Lo Que Dicen Nuestros Pacientes
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Miles de sonrisas transformadas con experiencias excepcionales
+        </p>
+      </div>
+
+      <div class="testimonials-track overflow-hidden" data-testimonials>
+        <div
+          class="testimonials-inner flex gap-6 transition-transform duration-500 ease-in-out"
+        >
+          {
+            testimonials.map((item) => (
+              <div class="testimonial-slide flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+                <TestimonialCard {...item} />
+              </div>
+            ))
+          }
+        </div>
+        <div class="flex justify-center gap-2 mt-8" data-testimonial-dots></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="py-24 px-4 md:px-8 bg-[#1B2B3A]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <ContactForm />
+
+        <div class="space-y-8">
+          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl text-white">
+            <h3 class="text-2xl mb-6 font-medium">Información de Contacto</h3>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <Icon name="map-pin" class="text-[#D4AF77] flex-shrink-0" size={24} />
+                <div>
+                  <p class="mb-1">Dirección</p>
+                  <p class="text-white/80">
+                    {contact.address.line1}<br />
+                    {contact.address.line2}<br />
+                    {contact.address.country}
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <Icon name="clock" class="text-[#D4AF77] flex-shrink-0" size={24} />
+                <div>
+                  <p class="mb-1">Horario de Atención</p>
+                  <p class="text-white/80">
+                    Lun - Vie: 9:00 AM - 7:00 PM<br />Sábados: 9:00 AM - 2:00 PM
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <Icon name="phone" class="text-[#D4AF77] flex-shrink-0" size={24} />
+                <div>
+                  <p class="mb-1">Teléfono</p>
+                  <p class="text-white/80">{contact.phone}</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <Icon name="mail" class="text-[#D4AF77] flex-shrink-0" size={24} />
+                <div>
+                  <p class="mb-1">Email</p>
+                  <p class="text-white/80">{contact.email}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl">
+            <iframe
+              src={contact.mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={contact.mapTitle}></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Layout>
+
+<script>
+  const track = document.querySelector<HTMLElement>("[data-testimonials]");
+  const inner = track?.querySelector<HTMLElement>(".testimonials-inner");
+  const dotsContainer = track?.querySelector<HTMLElement>("[data-testimonial-dots]");
+  const slides = inner?.querySelectorAll<HTMLElement>(".testimonial-slide");
+
+  if (track && inner && dotsContainer && slides && slides.length > 0) {
+    let current = 0;
+    let autoplayTimer: ReturnType<typeof setInterval>;
+
+    const getSlidesPerView = () => {
+      if (window.matchMedia("(min-width: 1024px)").matches) return 3;
+      if (window.matchMedia("(min-width: 640px)").matches) return 2;
+      return 1;
+    };
+
+    const maxIndex = () => Math.max(0, slides.length - getSlidesPerView());
+
+    const goTo = (index: number) => {
+      current = Math.max(0, Math.min(index, maxIndex()));
+      const slideWidth = slides[0].offsetWidth + 24;
+      inner.style.transform = `translateX(-${current * slideWidth}px)`;
+      dotsContainer.querySelectorAll("button").forEach((btn, i) => {
+        btn.classList.toggle("bg-[#D4AF77]", i === current);
+        btn.classList.toggle("bg-gray-300", i !== current);
+      });
+    };
+
+    for (let i = 0; i <= maxIndex(); i++) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = `w-2.5 h-2.5 rounded-full transition-colors ${i === 0 ? "bg-[#D4AF77]" : "bg-gray-300"}`;
+      dot.setAttribute("aria-label", `Ir al testimonio ${i + 1}`);
+      dot.addEventListener("click", () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    const startAutoplay = () => {
+      autoplayTimer = setInterval(() => {
+        goTo(current >= maxIndex() ? 0 : current + 1);
+      }, 5000);
+    };
+
+    const resetAutoplay = () => {
+      clearInterval(autoplayTimer);
+      startAutoplay();
+    };
+
+    window.addEventListener("resize", () => {
+      dotsContainer.innerHTML = "";
+      for (let i = 0; i <= maxIndex(); i++) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = `w-2.5 h-2.5 rounded-full transition-colors ${i === current ? "bg-[#D4AF77]" : "bg-gray-300"}`;
+        dot.setAttribute("aria-label", `Ir al testimonio ${i + 1}`);
+        dot.addEventListener("click", () => {
+          goTo(i);
+          resetAutoplay();
+        });
+        dotsContainer.appendChild(dot);
+      }
+      goTo(current);
+    });
+
+    track.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+    track.addEventListener("mouseleave", startAutoplay);
+
+    startAutoplay();
+  }
+</script>

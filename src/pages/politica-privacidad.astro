@@ -1,0 +1,94 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { contact } from "../data/site";
+---
+
+<PageLayout
+  title="Política de Privacidad · SmileLux"
+  description="Política de privacidad y tratamiento de datos personales de SmileLux, clínica dental en Bogotá, Colombia."
+>
+  <article class="max-w-3xl mx-auto px-4 md:px-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-[#D4AF77] hover:text-[#C9B498] transition-colors text-sm font-medium mb-8"
+    >
+      ← Volver al inicio
+    </a>
+
+    <h1 class="text-4xl md:text-5xl text-[#1B2B3A] font-medium mb-4">Política de Privacidad</h1>
+    <p class="text-gray-500 text-sm mb-10">Última actualización: mayo 2026</p>
+
+    <div class="prose prose-gray max-w-none space-y-8 text-gray-600 leading-relaxed">
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">1. Responsable del tratamiento</h2>
+        <p>
+          SmileLux (“nosotros”), con domicilio en {contact.address.line1},{" "}
+          {contact.address.line2}, {contact.address.country}, es responsable del tratamiento de los
+          datos personales que nos proporcione a través de este sitio web, formularios de contacto,
+          WhatsApp, correo electrónico o durante su atención en la clínica.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">2. Datos que recopilamos</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Datos de identificación: nombre, documento de identidad, edad.</li>
+          <li>Datos de contacto: teléfono, correo electrónico, dirección.</li>
+          <li>Datos de salud: historial clínico, radiografías, fotografías intraorales.</li>
+          <li>Datos de navegación: cookies técnicas y estadísticas de uso del sitio web.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">3. Finalidad del tratamiento</h2>
+        <p>Utilizamos sus datos para:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-2">
+          <li>Agendar y gestionar citas de valoración y tratamiento.</li>
+          <li>Prestar servicios odontológicos y dar seguimiento a su historial clínico.</li>
+          <li>Responder consultas enviadas por formulario, WhatsApp o correo.</li>
+          <li>Enviar recordatorios de citas y comunicaciones relacionadas con su tratamiento.</li>
+          <li>Cumplir obligaciones legales en materia de salud y facturación.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">4. Base legal</h2>
+        <p>
+          El tratamiento se realiza con su consentimiento, para la ejecución de la relación
+          contractual de prestación de servicios de salud y, cuando aplique, para el cumplimiento de
+          obligaciones legales conforme a la normativa colombiana vigente, incluida la Ley 1581 de
+          2012 y el Decreto 1377 de 2013.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">5. Conservación y seguridad</h2>
+        <p>
+          Conservamos los datos el tiempo necesario para la atención clínica y los plazos exigidos por
+          ley. Aplicamos medidas técnicas y organizativas para proteger la confidencialidad,
+          integridad y disponibilidad de su información, incluido el acceso restringido al personal
+          autorizado.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">6. Sus derechos</h2>
+        <p>Usted puede ejercer los derechos de conocer, actualizar, rectificar y suprimir sus datos, así como revocar la autorización del tratamiento, escribiendo a:</p>
+        <p class="mt-3 font-medium text-[#1B2B3A]">
+          <a href={`mailto:${contact.email}`} class="text-[#D4AF77] hover:underline">
+            {contact.email}
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl text-[#1B2B3A] font-medium mb-3">7. Contacto</h2>
+        <p>
+          Para cualquier duda sobre esta política, contáctenos en {contact.email} o al{" "}
+          {contact.phone}. Dirección: {contact.address.line1}, {contact.address.line2},{" "}
+          {contact.address.country}.
+        </p>
+      </section>
+    </div>
+  </article>
+</PageLayout>

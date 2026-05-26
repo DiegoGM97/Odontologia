@@ -1,0 +1,96 @@
+---
+import Icon from "./Icon.astro";
+import { WHATSAPP_URL } from "../data/site";
+---
+
+<div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl">
+  <h3 class="text-3xl text-[#1B2B3A] mb-6">Agenda tu Valoración</h3>
+  <p class="text-gray-600 mb-8">
+    Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.
+  </p>
+
+  <form id="contact-form" class="space-y-6">
+    <div>
+      <label for="name" class="block text-sm mb-2 text-[#1B2B3A]">Nombre Completo</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#D4AF77] transition-colors"
+        placeholder="Juan Pérez"
+      />
+    </div>
+
+    <div>
+      <label for="email" class="block text-sm mb-2 text-[#1B2B3A]">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#D4AF77] transition-colors"
+        placeholder="juan@ejemplo.com"
+      />
+    </div>
+
+    <div>
+      <label for="phone" class="block text-sm mb-2 text-[#1B2B3A]">Teléfono</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        required
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#D4AF77] transition-colors"
+        placeholder="+57 300 000 0000"
+      />
+    </div>
+
+    <div>
+      <label for="appointmentType" class="block text-sm mb-2 text-[#1B2B3A]">
+        Tipo de Consulta
+      </label>
+      <select
+        id="appointmentType"
+        name="appointmentType"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#D4AF77] transition-colors"
+      >
+        <option value="presencial">Valoración Presencial</option>
+        <option value="virtual">Valoración Virtual</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-gradient-to-r from-[#D4AF77] to-[#C9B498] text-white py-4 rounded-lg hover:shadow-xl transition-all duration-300"
+    >
+      Enviar Solicitud
+    </button>
+  </form>
+
+  <div class="mt-8 pt-8 border-t border-gray-200">
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full flex items-center justify-center gap-3 bg-green-500 text-white py-4 rounded-lg hover:bg-green-600 transition-colors"
+    >
+      <Icon name="message-circle" size={20} />
+      <span>O contáctanos por WhatsApp</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = data.get("name") as string;
+    const appointmentType = data.get("appointmentType") as string;
+    alert(
+      `¡Gracias ${name}! Te contactaremos pronto para agendar tu ${appointmentType}.`,
+    );
+    form.reset();
+  });
+</script>

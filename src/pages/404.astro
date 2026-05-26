@@ -1,0 +1,37 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<PageLayout
+  title="Página no encontrada · SmileLux"
+  description="La página que buscas no existe. Vuelve al inicio de SmileLux."
+>
+  <div class="max-w-lg mx-auto px-4 md:px-8 text-center py-12">
+    <div
+      class="w-20 h-20 mx-auto mb-8 rounded-full bg-gradient-to-br from-[#D4AF77] to-[#C9B498] flex items-center justify-center"
+    >
+      <Icon name="sparkles" class="text-white" size={36} />
+    </div>
+    <p class="text-[#D4AF77] font-medium tracking-wider text-sm mb-4">ERROR 404</p>
+    <h1 class="text-4xl md:text-5xl text-[#1B2B3A] font-medium mb-4">Página no encontrada</h1>
+    <p class="text-gray-600 mb-10 leading-relaxed">
+      Lo sentimos, el enlace que seguiste no existe o fue movido. Puedes volver al inicio o explorar
+      nuestros servicios.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/"
+        class="inline-flex items-center justify-center bg-gradient-to-r from-[#D4AF77] to-[#C9B498] text-white px-8 py-4 rounded-full hover:shadow-xl transition-all font-medium"
+      >
+        Ir al inicio
+      </a>
+      <a
+        href="/#contacto"
+        class="inline-flex items-center justify-center border-2 border-[#D4AF77] text-[#1B2B3A] px-8 py-4 rounded-full hover:bg-[#D4AF77] hover:text-white transition-all font-medium"
+      >
+        Contacto
+      </a>
+    </div>
+  </div>
+</PageLayout>

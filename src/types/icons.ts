@@ -1,0 +1,16 @@
+export type IconName =
+  | "sparkles"
+  | "smile"
+  | "scan"
+  | "baby"
+  | "activity"
+  | "shield"
+  | "zap"
+  | "map-pin"
+  | "clock"
+  | "phone"
+  | "mail"
+  | "check-circle-2"
+  | "calendar"
+  | "message-circle"
+  | "star";

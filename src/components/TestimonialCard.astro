@@ -1,0 +1,43 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  name: string;
+  treatment: string;
+  testimonial: string;
+  image?: string;
+  rating?: number;
+}
+
+const { name, treatment, testimonial, image, rating = 5 } = Astro.props;
+---
+
+<div
+  class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 h-full"
+>
+  <div class="flex items-center gap-4 mb-6">
+    {
+      image ? (
+        <img src={image} alt={name} class="w-16 h-16 rounded-full object-cover" />
+      ) : (
+        <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF77] to-[#C9B498] flex items-center justify-center text-white text-xl">
+          {name.charAt(0)}
+        </div>
+      )
+    }
+    <div>
+      <h4 class="text-lg text-[#1B2B3A]">{name}</h4>
+      <p class="text-sm text-[#D4AF77]">{treatment}</p>
+    </div>
+  </div>
+
+  <div class="flex gap-1 mb-4">
+    {
+      Array.from({ length: rating }).map(() => (
+        <Icon name="star" size={16} class="fill-[#D4AF77] text-[#D4AF77]" fill />
+      ))
+    }
+  </div>
+
+  <p class="text-gray-600 leading-relaxed italic">"{testimonial}"</p>
+</div>

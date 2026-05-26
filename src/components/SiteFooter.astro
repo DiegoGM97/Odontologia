@@ -1,0 +1,92 @@
+---
+import Icon from "./Icon.astro";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<footer class="bg-[#0F1820] text-white py-16 px-4 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div>
+        <a
+          href="/"
+          class="flex items-center gap-2 mb-4 w-fit hover:opacity-80 transition-opacity"
+          aria-label="Ir al inicio"
+        >
+          <Icon name="sparkles" class="text-[#D4AF77]" size={28} />
+          <h3 class="text-xl font-medium">SmileLux</h3>
+        </a>
+        <p class="text-white/70 mb-6">
+          Clínica dental especializada en tratamientos estéticos e indoloros con tecnología de
+          vanguardia.
+        </p>
+        <SocialLinks variant="footer" />
+      </div>
+      <div>
+        <h4 class="text-lg mb-4 font-medium">Especialidades</h4>
+        <ul class="space-y-2 text-white/70">
+          <li>
+            <a href="/#especialidades" class="hover:text-[#D4AF77] transition-colors">
+              Diseño de Sonrisa
+            </a>
+          </li>
+          <li>
+            <a href="/#especialidades" class="hover:text-[#D4AF77] transition-colors">
+              Ortodoncia Invisible
+            </a>
+          </li>
+          <li>
+            <a href="/#especialidades" class="hover:text-[#D4AF77] transition-colors">
+              Implantes Dentales
+            </a>
+          </li>
+          <li>
+            <a href="/#especialidades" class="hover:text-[#D4AF77] transition-colors">
+              Odontopediatría
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg mb-4 font-medium">Recursos</h4>
+        <ul class="space-y-2 text-white/70">
+          <li>
+            <a href="/blog" class="hover:text-[#D4AF77] transition-colors">Blog</a>
+          </li>
+          <li>
+            <a href="/preguntas-frecuentes" class="hover:text-[#D4AF77] transition-colors">
+              Preguntas Frecuentes
+            </a>
+          </li>
+          <li>
+            <a href="/#resultados" class="hover:text-[#D4AF77] transition-colors">
+              Casos de Éxito
+            </a>
+          </li>
+          <li>
+            <a href="/#contacto" class="hover:text-[#D4AF77] transition-colors">Contacto</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg mb-4 font-medium">Legal</h4>
+        <ul class="space-y-2 text-white/70">
+          <li>
+            <a href="/politica-privacidad" class="hover:text-[#D4AF77] transition-colors">
+              Política de Privacidad
+            </a>
+          </li>
+          <li>
+            <a href="/nuestro-equipo" class="hover:text-[#D4AF77] transition-colors">
+              Nuestro Equipo
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8">
+      <p class="text-white/50 text-sm text-center md:text-left">
+        © 2026 SmileLux. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

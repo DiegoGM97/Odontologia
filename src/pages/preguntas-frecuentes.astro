@@ -1,0 +1,44 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import FaqAccordion from "../components/FaqAccordion.astro";
+import { WHATSAPP_URL } from "../data/site";
+---
+
+<PageLayout
+  title="Preguntas Frecuentes · SmileLux"
+  description="Respuestas a las dudas más comunes sobre tratamientos dentales, valoraciones, costos y atención en SmileLux, Bogotá."
+>
+  <div class="max-w-3xl mx-auto px-4 md:px-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-[#D4AF77] hover:text-[#C9B498] transition-colors text-sm font-medium mb-8"
+    >
+      ← Volver al inicio
+    </a>
+
+    <div class="text-center mb-12">
+      <div class="inline-block bg-[#D4AF77]/10 px-4 py-2 rounded-full mb-6">
+        <span class="text-[#D4AF77] tracking-wider text-sm">FAQ</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl text-[#1B2B3A] font-medium mb-4">Preguntas Frecuentes</h1>
+      <p class="text-gray-600 text-lg">
+        Resolvemos las dudas más comunes antes de tu primera visita.
+      </p>
+    </div>
+
+    <FaqAccordion />
+
+    <div class="mt-14 text-center bg-[#F8F8F8] rounded-2xl p-8 border border-[#D4AF77]/20">
+      <p class="text-[#1B2B3A] font-medium mb-2">¿No encontraste tu respuesta?</p>
+      <p class="text-gray-600 text-sm mb-6">Escríbenos por WhatsApp y con gusto te orientamos.</p>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#D4AF77] to-[#C9B498] text-white px-6 py-3 rounded-full hover:shadow-lg transition-all font-medium"
+      >
+        Contactar por WhatsApp
+      </a>
+    </div>
+  </div>
+</PageLayout>

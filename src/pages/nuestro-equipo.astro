@@ -1,0 +1,73 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { teamMembers } from "../data/team";
+import { WHATSAPP_URL } from "../data/site";
+---
+
+<PageLayout
+  title="Nuestro Equipo · SmileLux"
+  description="Conoce al equipo de especialistas de SmileLux: odontólogos certificados en estética dental, ortodoncia, implantes y odontopediatría en Bogotá."
+>
+  <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 text-[#D4AF77] hover:text-[#C9B498] transition-colors text-sm font-medium mb-8"
+    >
+      ← Volver al inicio
+    </a>
+
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <div class="inline-block bg-[#D4AF77]/10 px-4 py-2 rounded-full mb-6">
+        <span class="text-[#D4AF77] tracking-wider text-sm">ESPECIALISTAS CERTIFICADOS</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl text-[#1B2B3A] font-medium mb-4">Nuestro Equipo</h1>
+      <p class="text-gray-600 text-lg">
+        Profesionales apasionados por transformar sonrisas con tecnología de vanguardia y un trato
+        humano excepcional.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+      {
+        teamMembers.map((member) => (
+          <article class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 hover:shadow-xl hover:border-[#D4AF77]/40 transition-all duration-300">
+            <div class="aspect-square overflow-hidden bg-[#F8F8F8]">
+              <img
+                src={member.image}
+                alt={member.name}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h2 class="text-lg text-[#1B2B3A] font-medium mb-1">{member.name}</h2>
+              <p class="text-[#D4AF77] text-sm font-medium mb-1">{member.role}</p>
+              <p class="text-gray-500 text-xs mb-3">{member.specialty}</p>
+              <p class="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div
+      class="text-center bg-[#F8F8F8] rounded-2xl p-10 md:p-14 border border-[#D4AF77]/20"
+    >
+      <h2 class="text-2xl md:text-3xl text-[#1B2B3A] font-medium mb-4">
+        ¿Listo para conocernos en persona?
+      </h2>
+      <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+        Agenda una valoración sin compromiso y descubre cómo podemos ayudarte a alcanzar la sonrisa
+        que siempre quisiste.
+      </p>
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#D4AF77] to-[#C9B498] text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium"
+      >
+        Agendar valoración
+      </a>
+    </div>
+  </div>
+</PageLayout>

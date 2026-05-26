@@ -1,0 +1,44 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { blogPosts, getPostBySlug } from "../../data/blog";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<PageLayout title={`${post.title} · SmileLux`} description={post.excerpt}>
+  <article class="max-w-3xl mx-auto px-4 md:px-8">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-2 text-[#D4AF77] hover:text-[#C9B498] transition-colors text-sm font-medium mb-8"
+    >
+      ← Volver al blog
+    </a>
+
+    <div class="aspect-[16/9] rounded-2xl overflow-hidden shadow-lg mb-8">
+      <img src={post.image} alt={post.title} class="w-full h-full object-cover" />
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
+      <span class="text-[#D4AF77] font-medium">{post.category}</span>
+      <span>·</span>
+      <time>{post.date}</time>
+      <span>·</span>
+      <span>{post.readTime} de lectura</span>
+    </div>
+
+    <h1 class="text-3xl md:text-4xl text-[#1B2B3A] font-medium mb-8 leading-tight">
+      {post.title}
+    </h1>
+
+    <div class="space-y-5 text-gray-600 leading-relaxed text-lg">
+      {post.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </article>
+</PageLayout>

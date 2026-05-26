@@ -1,0 +1,194 @@
+---
+import Icon from "./Icon.astro";
+import SocialLinks from "./SocialLinks.astro";
+
+const sectionLinks = [
+  { href: "/#especialidades", label: "Especialidades" },
+  { href: "/#tecnologia", label: "Tecnología" },
+  { href: "/#resultados", label: "Resultados" },
+  { href: "/#instagram", label: "Instagram" },
+  { href: "/#contacto", label: "Contacto" },
+];
+
+const pageLinks = [
+  { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
+  { href: "/blog", label: "Blog" },
+];
+
+const pageLinkClass =
+  "inline-flex items-center gap-1.5 text-sm font-medium text-[#1B2B3A] border border-[#D4AF77]/35 rounded-full px-3.5 py-1.5 hover:bg-[#D4AF77]/10 hover:border-[#D4AF77] hover:text-[#1B2B3A] transition-colors";
+
+const pageLinkMobileClass =
+  "mobile-nav-link mobile-page-link inline-flex items-center gap-2 py-3.5 text-base font-medium text-[#1B2B3A] border border-[#D4AF77]/35 rounded-xl px-4 hover:bg-[#D4AF77]/10 hover:border-[#D4AF77] transition-colors";
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+    <a
+      href="/"
+      class="flex items-center gap-2 hover:opacity-80 transition-opacity"
+      aria-label="Ir al inicio"
+    >
+      <Icon name="sparkles" class="text-[#D4AF77]" size={28} />
+      <span class="text-xl md:text-2xl text-[#1B2B3A] tracking-wide font-medium">SmileLux</span>
+    </a>
+
+    <div class="hidden lg:flex items-center flex-1 justify-end gap-6 min-w-0">
+      <div class="flex items-center gap-6">
+        {
+          sectionLinks.map((link) => (
+            <a href={link.href} class="text-[#1B2B3A] hover:text-[#D4AF77] transition-colors text-sm whitespace-nowrap">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+      <div class="flex items-center gap-3 pl-6 border-l border-gray-200 shrink-0">
+        {
+          pageLinks.map((link) => (
+            <a href={link.href} class={pageLinkClass}>
+              {link.label}
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[#D4AF77]">
+                <path d="M7 17 17 7" /><path d="M7 7h10v10" />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex">
+        <SocialLinks variant="nav" />
+      </div>
+
+      <button
+        type="button"
+        id="nav-toggle"
+        class="lg:hidden relative z-[60] w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-[#F8F8F8] transition-colors cursor-pointer"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="nav-bar w-6 h-0.5 bg-[#1B2B3A] transition-all duration-300"></span>
+        <span class="nav-bar w-6 h-0.5 bg-[#1B2B3A] transition-all duration-300"></span>
+        <span class="nav-bar w-6 h-0.5 bg-[#1B2B3A] transition-all duration-300"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Fuera del nav: backdrop-blur en el nav creaba un containing block que limitaba el menú al alto de la barra -->
+<div
+  id="mobile-menu"
+  class="lg:hidden fixed inset-0 z-40 bg-[#1B2B3A]/70 opacity-0 invisible pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+>
+  <div
+    id="mobile-panel"
+    class="fixed top-0 right-0 bottom-0 w-[min(320px,88vw)] max-w-full bg-white shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col overflow-y-auto"
+  >
+    <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100 shrink-0">
+      <span class="text-sm font-medium tracking-wide text-[#1B2B3A]/60 uppercase">Menú</span>
+      <button
+        type="button"
+        id="mobile-menu-close"
+        class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[#F8F8F8] transition-colors cursor-pointer"
+        aria-label="Cerrar menú"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" class="text-[#1B2B3A]">
+          <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="px-6 py-2">
+      <nav class="flex flex-col">
+        {
+          sectionLinks.map((link) => (
+            <a
+              href={link.href}
+              class="mobile-nav-link py-3.5 text-base font-medium text-[#1B2B3A] hover:text-[#D4AF77] border-b border-gray-100 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+        <a
+          href="/nuestro-equipo"
+          class="mobile-nav-link py-3.5 text-base font-medium text-[#1B2B3A] hover:text-[#D4AF77] border-b border-gray-100 transition-colors"
+        >
+          Nuestro Equipo
+        </a>
+
+        <p class="mt-5 mb-2 text-xs font-medium tracking-wide text-[#1B2B3A]/50 uppercase">
+          Más información
+        </p>
+        <div class="flex flex-col gap-2">
+          {
+            pageLinks.map((link) => (
+              <a href={link.href} class={pageLinkMobileClass}>
+                {link.label}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-[#D4AF77] shrink-0">
+                  <path d="M7 17 17 7" /><path d="M7 7h10v10" />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </nav>
+
+      <div class="mt-5 pt-5 border-t border-gray-100">
+        <SocialLinks variant="nav" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const panel = document.getElementById("mobile-panel");
+  const closeBtn = document.getElementById("mobile-menu-close");
+  const links = document.querySelectorAll<HTMLAnchorElement>(".mobile-nav-link");
+  const bars = toggle?.querySelectorAll(".nav-bar");
+
+  function setOpen(open: boolean) {
+    if (!toggle || !menu || !panel) return;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    menu.classList.toggle("opacity-0", !open);
+    menu.classList.toggle("invisible", !open);
+    menu.classList.toggle("pointer-events-none", !open);
+    menu.setAttribute("aria-hidden", String(!open));
+    panel.classList.toggle("translate-x-full", !open);
+    document.body.style.overflow = open ? "hidden" : "";
+
+    bars?.forEach((bar, i) => {
+      if (open) {
+        if (i === 0) bar.classList.add("rotate-45", "translate-y-2");
+        if (i === 1) bar.classList.add("opacity-0");
+        if (i === 2) bar.classList.add("-rotate-45", "-translate-y-2");
+      } else {
+        bar.classList.remove("rotate-45", "translate-y-2", "opacity-0", "-rotate-45", "-translate-y-2");
+      }
+    });
+  }
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    setOpen(!isOpen);
+  });
+
+  closeBtn?.addEventListener("click", () => setOpen(false));
+
+  menu?.addEventListener("click", (e) => {
+    if (e.target === menu) setOpen(false);
+  });
+
+  links.forEach((link) => link.addEventListener("click", () => setOpen(false)));
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+</script>

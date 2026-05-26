@@ -1,0 +1,20 @@
+---
+import Layout from "./Layout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <SiteNav />
+  <main class="pt-28 pb-8 min-h-[70vh]">
+    <slot />
+  </main>
+  <SiteFooter />
+</Layout>
