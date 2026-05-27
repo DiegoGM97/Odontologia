@@ -69,27 +69,56 @@ export const beforeAfterCases = [
   },
 ];
 
+export const googleReviews = {
+  rating: 4.9,
+  totalReviews: 127,
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=SmileLux+Chapinero+Bogotá",
+};
+
 export const testimonials = [
   {
     name: "María González",
-    treatment: "Diseño de Sonrisa",
+    timeAgo: "hace 2 semanas",
+    rating: 5,
     testimonial:
-      "Increíble experiencia. El equipo es muy profesional y la tecnología que usan hizo que el proceso fuera completamente indoloro. ¡Mi sonrisa luce espectacular!",
-    image: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=200",
+      "Increíble experiencia. El equipo es muy profesional y la tecnología que usan hizo que el proceso fuera completamente indoloro. Mi sonrisa quedó espectacular.",
+    image: "https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?w=96&h=96&fit=crop",
+    reviewCount: 12,
   },
   {
     name: "Carlos Ramírez",
-    treatment: "Implantes Dentales",
+    timeAgo: "hace 1 mes",
+    rating: 5,
     testimonial:
-      "Estaba nervioso por el procedimiento, pero la sedación consciente hizo que no sintiera absolutamente nada. El resultado superó mis expectativas.",
-    image: "https://images.unsplash.com/photo-1598911642263-b81130ed8ce8?w=200",
+      "Estaba nervioso por el procedimiento, pero la sedación consciente hizo que no sintiera absolutamente nada. El resultado superó mis expectativas. Muy recomendado.",
+    image: "https://images.unsplash.com/photo-1598911642263-b81130ed8ce8?w=96&h=96&fit=crop",
+    localGuide: true,
   },
   {
     name: "Laura Martínez",
-    treatment: "Ortodoncia Invisible",
+    timeAgo: "hace 3 semanas",
+    rating: 5,
     testimonial:
-      "El escáner 3D me permitió ver el resultado final antes de empezar. Todo el proceso fue cómodo y discreto. ¡100% recomendado!",
-    image: "https://images.unsplash.com/photo-1611166819595-ac34987dfa57?w=200",
+      "El escáner 3D me permitió ver el resultado final antes de empezar. Todo el proceso fue cómodo y discreto. La atención en Chapinero es excelente.",
+    image: "https://images.unsplash.com/photo-1611166819595-ac34987dfa57?w=96&h=96&fit=crop",
+    reviewCount: 4,
+  },
+  {
+    name: "Andrés Mejía",
+    timeAgo: "hace 5 días",
+    rating: 5,
+    testimonial:
+      "Llegué por una urgencia y me atendieron el mismo día. Consultorio impecable, personal amable y explicaron cada paso del tratamiento con mucha claridad.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop",
+  },
+  {
+    name: "Diana Torres",
+    timeAgo: "hace 2 meses",
+    rating: 4,
+    testimonial:
+      "Muy buena experiencia con los alineadores. Solo restaría un poco el tiempo de espera en cita de control, pero el resultado valió totalmente la pena.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop",
+    reviewCount: 8,
   },
 ];
 
@@ -125,8 +154,6 @@ export const instagramPosts = [
       "✨ Transformación completa con diseño de sonrisa digital. Resultados naturales en solo 2 sesiones.",
     imageUrl:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&h=600&fit=crop",
-    likes: 1247,
-    comments: 89,
     timeAgo: "Hace 2 días",
   },
   {
@@ -136,8 +163,6 @@ export const instagramPosts = [
       "😁 La tecnología 3D nos permite planificar tu sonrisa antes de empezar. ¿Agendamos tu valoración?",
     imageUrl:
       "https://images.unsplash.com/photo-1642844771937-23accb161a3d?w=600&h=600&fit=crop&q=80",
-    likes: 892,
-    comments: 54,
     timeAgo: "Hace 4 días",
   },
   {
@@ -147,8 +172,6 @@ export const instagramPosts = [
       "🇨🇴 Nuestro consultorio premium en Chapinero, Bogotá. Ambiente cómodo y tratamientos sin dolor.",
     imageUrl:
       "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=600&fit=crop",
-    likes: 2103,
-    comments: 142,
     timeAgo: "Hace 1 semana",
   },
 ];
